@@ -5,15 +5,16 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <link rel="stylesheet" href="simple.css">
-    <title>Påmeldingsbekreftelse</title>
+    <title>Registration confirmation</title>
 </head>
 <body>
-    <h2>Påmeldingsbekreftelse</h2>
-    <p>Påmeldingen er mottatt for </p>
+    <h2>Registration confirmation</h2>
+    <p>Registration received for</p>
     <p>
         &nbsp;&nbsp;&nbsp;<c:out value="${participant.firstname}"/><br>
-        &nbsp;&nbsp;&nbsp;Olsen<br>
-        &nbsp;&nbsp;&nbsp;12345676<br> &nbsp;&nbsp;&nbsp;mann
+        &nbsp;&nbsp;&nbsp;<c:out value="${participant.lastname}"/><br>
+        &nbsp;&nbsp;&nbsp;<c:out value="${participant.mobile}"/><br>
+        &nbsp;&nbsp;&nbsp;<c:out value="${participant.gender}"/>
     </p>
-    <a href="http://localhost:8080/deltagerliste">Gå til deltagerlisten</a>
+    <a href="http://localhost:8080/deltagerliste">Go to participants list</a>
 </body></html>

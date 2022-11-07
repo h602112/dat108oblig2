@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class RegistrationController {
@@ -23,9 +24,9 @@ public class RegistrationController {
     }
 
     @PostMapping ("/registration")
-    public String submitRegistration(@ModelAttribute("participant") Participant participant, Model model) {
+    public String submitRegistration(@ModelAttribute("participant") Participant participant, RedirectAttributes ra) {
         participantService.saveParticipant(participant);
-        model.addAttribute("participant", participant);
+        ra.addFlashAttribute("participant", participant);
         return "redirect:/registrated";
     }
 

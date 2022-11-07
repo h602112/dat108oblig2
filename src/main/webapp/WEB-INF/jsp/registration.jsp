@@ -13,16 +13,16 @@
 <form id="participantFormBean" action="registration" method="post">
     <fieldset>
 
-        <label for="firstname">firstname</label>
+        <label for="firstname">Firstname</label>
         <!-- NB! Spring sin (form:input)-tag støtter ikke required alene,
              men greit med required="noe"! -->
         <input id="firstname" name="firstname" title="..." pattern=".*" placeholder="fill out firstname" required="required" type="text" value="" onkeyup="checkFirstName()">
 
-        <label for="lastname">lastname</label>
+        <label for="lastname">Lastname</label>
         <input id="lastname" name="lastname" title="..." pattern=".*" placeholder="fill out lastname" required="required" type="text" value="" onkeyup="checkLastName()">
 
-        <label for="mobile">Mobile (8 numbers)</label>
-        <input id="mobile" name="mobile" title="..." pattern=".*" placeholder="fill out phone number" required="required" type="text" value="" onkeyup="checkMobileNumber()">>
+        <label for="mobile">Mobile (8 digits)</label>
+        <input id="mobile" name="mobile" title="..." pattern=".*" placeholder="fill out phone number" required="required" type="text" value="" onkeyup="checkMobileNumber()">
 
         <label for="password">Password</label>
         <input id="password" name="password" title="..." pattern=".*" placeholder="Choose a password" type="password" required="required" value="" onkeyup="checkPassword()">
@@ -31,8 +31,8 @@
         <input id="passwordRepeated" name="passwordRepeated" title="..." pattern=".*" placeholder="Repeat password" type="password" required="required" value="" onkeyup="checkRepeatedPassword()">
 
         <label for="gender">Gender:</label>
-        <input id="gender1" name="gender" checked="checked" type="radio" value="man">man
-        <input id="gender2" name="gender" type="radio" value="woman">woman
+        <input id="gender1" name="gender" checked="checked" type="radio" value="Man">Man
+        <input id="gender2" name="gender" type="radio" value="Woman">Woman
 
         <br><br><button type="submit">sign me up</button>
     </fieldset>
