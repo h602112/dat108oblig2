@@ -2,6 +2,7 @@ const firstName = document.getElementById('firstname');
 const lastName = document.getElementById('lastname');
 const mobileNumber = document.getElementById('mobile');
 const userPassword = document.getElementById('password');
+const repeatedPassword = document.getElementById('passwordRepeated');
 //function to check if first name fulfills validity requirements
 function checkFirstName() {
     const value = firstName.value;
@@ -51,8 +52,18 @@ function checkPassword() {
     }
     if (!value || value.length <= 5 || largeLetterCount < 2 || numberCounter < 2) {
         userPassword.style.backgroundColor = 'red';
-    }  else {
+    }  else if (!value || value.length <= 7 || largeLetterCount < 3 || numberCounter < 3) {
+        userPassword.style.backgroundColor = 'yellow';
+    } else {
         userPassword.style.backgroundColor = 'green';
+    }
+}
+// check if the repeated password is the same as user password
+function checkRepeatedPassword() {
+    if (repeatedPassword.value===userPassword.value) {
+        repeatedPassword.style.backgroundColor = 'green';
+    } else {
+        repeatedPassword.style.backgroundColor = 'red';
     }
 }
 

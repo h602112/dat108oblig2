@@ -32,7 +32,7 @@
 
 
         <label for="passwordRepeated">Password repeated</label>
-        <input id="passwordRepeated" name="passwordRepeated" title="..." pattern=".*" placeholder="Repeat password" type="password" required="required" value="">
+        <input id="passwordRepeated" name="passwordRepeated" title="..." pattern=".*" placeholder="Repeat password" type="password" required="required" value="" onkeyup="checkRepeatedPassword()">
 
 
         <label for="gender">Gender:</label>
