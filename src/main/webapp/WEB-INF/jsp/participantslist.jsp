@@ -1,68 +1,40 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!-- saved from url=(0035)http://localhost:8080/deltagerliste -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <link rel="stylesheet" href="./simple.css">
-    <title>Deltagerliste</title>
+    <title>Participantslist</title>
 </head>
 <body>
-<p>Innlogget som: 12345676 / Pål Olsen</p>
-<h2>Deltagerliste</h2>
+<p>Logged in as: ${user.mobile} / ${user.firstname} ${user.lastname}</p>
+<h2>Participants list</h2>
 <table>
-    <tbody><tr>
-        <th>Kjønn</th>
-        <th align="left">Navn</th>
-        <th align="left">Mobil</th>
-    </tr>
+    <tbody>
+        <tr>
+            <th>Gender</th>
+            <th align="left">Name</th>
+            <th align="left">Mobile</th>
+        </tr>
 
-
-    <tr style="">
-        <td align="center">♀</td>
-        <td>Anne Panne</td>
-        <td>234 56 789</td>
-    </tr>
-
-    <tr style="">
-        <td align="center">♂</td>
-        <td>Arne Arnesen</td>
-        <td>901 23 456</td>
-    </tr>
-
-    <tr style="">
-        <td align="center">♂</td>
-        <td>Arne Arnesen</td>
-        <td>901 23 455</td>
-    </tr>
-
-    <tr style="">
-        <td align="center">♂</td>
-        <td>Lars-Petter Helland</td>
-        <td>123 45 678</td>
-    </tr>
-
-    <tr style="">
-        <td align="center">♂</td>
-        <td>Per Viskelær</td>
-        <td>345 34 534</td>
-    </tr>
-
-    <tr style="background-color:#aaffaa;">
-        <td align="center">♂</td>
-        <td>Pål Olsen</td>
-        <td>123 45 676</td>
-    </tr>
-
-    <tr style="">
-        <td align="center">♀</td>
-        <td>Xx-x Xxx</td>
-        <td>123 21 378</td>
-    </tr>
-
-
-    </tbody></table>
+        <c:forEach var="participant" items="${participants}">
+            <tr>
+                <td>
+                    <c:choose>
+                        <c:when test="${participant.gender == 'Man'}">&#9794;</c:when>
+                        <c:otherwise>&#9792;</c:otherwise>
+                    </c:choose>
+                </td>
+                <td>${participant.firstname} ${participant.lastname}</td>
+                <td>${participant.mobile}</td>
+            </tr>
+        </c:forEach>
+    </tbody>
+</table>
 <br>
-<form action="http://localhost:8080/utlogging" method="post">
-    <button type="submit">Logg ut</button>
+<form action="http://localhost:8080/participantslist" method="post">
+    <button type="submit">Log out</button>
 </form>
 
 </body></html>

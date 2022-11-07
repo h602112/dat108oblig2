@@ -34,7 +34,7 @@
         <input id="gender1" name="gender" checked="checked" type="radio" value="Man">Man
         <input id="gender2" name="gender" type="radio" value="Woman">Woman
 
-        <br><br><button type="submit">sign me up</button>
+        <br><br><button type="submit">Sign me up</button>
     </fieldset>
 </form>
 
