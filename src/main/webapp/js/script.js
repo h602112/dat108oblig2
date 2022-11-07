@@ -58,7 +58,7 @@ function checkPassword() {
         userPassword.style.backgroundColor = 'green';
     }
 }
-// check if the repeated password is the same as user password
+// check if the repeated password is the same as user password by comparison
 function checkRepeatedPassword() {
     if (repeatedPassword.value===userPassword.value) {
         repeatedPassword.style.backgroundColor = 'green';
