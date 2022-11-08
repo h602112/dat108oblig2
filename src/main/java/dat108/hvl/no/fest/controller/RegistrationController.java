@@ -3,6 +3,7 @@ package dat108.hvl.no.fest.controller;
 import dat108.hvl.no.fest.model.Participant;
 import dat108.hvl.no.fest.service.ParticipantService;
 import dat108.hvl.no.fest.util.LoginUtil;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,9 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class RegistrationController {
+
+    @Value("${app.message.loginMsg}") private String LOGIN_MSG;
+    @Value("${app.message.invalidMsg}") private String INVALID_LOGIN_MSG;
 
     private ParticipantService participantService;
 
@@ -39,13 +43,23 @@ public class RegistrationController {
     }
 
     @GetMapping("/registrated")
-    public String registratedForm() {
+    public String registratedForm(HttpSession session, RedirectAttributes ra) {
+
+        if (!LoginUtil.isUserLoggedIn(session)) {
+            ra.addFlashAttribute("redirectMessage", LOGIN_MSG);
+            return "redirect:/login";
+        }
 
         return "registrated";
     }
 
     @GetMapping("/participantslist")
-    public String participantsList(Model model) {
+    public String participantsList(Model model, HttpSession session, RedirectAttributes ra) {
+
+        if (!LoginUtil.isUserLoggedIn(session)) {
+            ra.addFlashAttribute("redirectMessage", LOGIN_MSG);
+            return "redirect:/login";
+        }
 
         model.addAttribute("participants", participantService.getAllParticipants());
         return "participantslist";
@@ -56,7 +70,7 @@ public class RegistrationController {
 
         if (LoginUtil.isUserLoggedIn(session)) {
             LoginUtil.logOutUser(session);
-            ra.addFlashAttribute("redirectMessage", "You are logged out");
+            ra.addFlashAttribute("redirectMessage", LOGIN_MSG);
             return "redirect:/login";
         }
         return "redirect:/login";
@@ -73,14 +87,12 @@ public class RegistrationController {
         Participant participant = participantService.getParticipantById(id);
 
         if (participant == null) {
-            ra.addFlashAttribute("redirectMessage",
-                    "Invalid mobile number and/or password");
+            ra.addFlashAttribute("redirectMessage", INVALID_LOGIN_MSG);
             return "redirect:/login";
         }
 
         if (!id.equals(participant.getMobile()) || !pw.equals(participant.getPassword())) {
-            ra.addFlashAttribute("redirectMessage",
-                    "Invalid mobile number and/or password");
+            ra.addFlashAttribute("redirectMessage", INVALID_LOGIN_MSG);
             return "redirect:/login";
         }
 
