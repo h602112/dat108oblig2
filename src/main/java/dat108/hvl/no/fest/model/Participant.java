@@ -3,9 +3,10 @@ package dat108.hvl.no.fest.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.servlet.http.Part;
 
 @Entity
-public class Participant {
+public class Participant implements Comparable<Participant>{
     @Id
     private Long mobile;
     @Column(length = 50)
@@ -25,6 +26,11 @@ public class Participant {
         this.firstname = firstname;
         this.lastname = lastname;
         this.gender = gender;
+    }
+
+    @Override
+    public int compareTo(Participant participant) {
+        return this.firstname.compareTo(participant.getFirstname());
     }
 
     public Long getMobile() {
