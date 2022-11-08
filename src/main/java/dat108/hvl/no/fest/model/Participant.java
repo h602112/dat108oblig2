@@ -7,7 +7,7 @@ import javax.persistence.Id;
 public class Participant {
     @Id
     private int mobile;
-    private int password;
+    private String password;
     private String firstname;
     private String lastname;
     private Gender gender;
