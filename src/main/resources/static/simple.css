@@ -624,3 +624,24 @@ progress::-moz-progress-bar {
 progress:indeterminate::-moz-progress-bar {
     background-color: var(--accent-bg);
 }
+
+/* Custom student styling */
+
+.required::after {
+    content: ' *';
+    color: red;
+    display: inline;
+}
+
+/* CHEATING?? */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}

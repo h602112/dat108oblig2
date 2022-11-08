@@ -1,5 +1,6 @@
 package dat108.hvl.no.fest.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -7,14 +8,18 @@ import javax.persistence.Id;
 public class Participant {
     @Id
     private Long mobile;
-    private int password;
+    @Column(length = 50)
+    private String password;
+    @Column(length = 20)
     private String firstname;
+    @Column(length = 20)
     private String lastname;
+    @Column(length = 5)
     private String gender;
 
     public Participant() {}
 
-    public Participant(Long mobile, int password, String firstname, String lastname, String gender) {
+    public Participant(Long mobile, String password, String firstname, String lastname, String gender) {
         this.mobile = mobile;
         this.password = password;
         this.firstname = firstname;
@@ -30,11 +35,11 @@ public class Participant {
         this.mobile = mobile;
     }
 
-    public int getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(int password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 

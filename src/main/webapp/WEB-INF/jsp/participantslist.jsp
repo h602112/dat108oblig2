@@ -19,7 +19,7 @@
         </tr>
 
         <c:forEach var="participant" items="${participants}">
-            <tr>
+            <tr style="${participant.mobile == user.mobile ? 'background-color: green' : null}">
                 <td>
                     <c:choose>
                         <c:when test="${participant.gender == 'Man'}">&#9794;</c:when>
@@ -33,7 +33,7 @@
     </tbody>
 </table>
 <br>
-<form action="http://localhost:8080/participantslist" method="post">
+<form action="participantslist" method="post">
     <button type="submit">Log out</button>
 </form>
 

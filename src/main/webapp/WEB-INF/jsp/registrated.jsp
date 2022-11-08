@@ -16,5 +16,5 @@
         &nbsp;&nbsp;&nbsp;<c:out value="${participant.mobile}"/><br>
         &nbsp;&nbsp;&nbsp;<c:out value="${participant.gender}"/>
     </p>
-    <a href="http://localhost:8080/participantslist">Go to participants list</a>
+    <a href="participantslist">Go to participants list</a>
 </body></html>

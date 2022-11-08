@@ -28,6 +28,6 @@ public class ParticipantServiceImpl implements ParticipantService {
 
     @Override
     public Participant getParticipantById(Long id) {
-        return participantRepository.findById(id).get();
+        return participantRepository.findById(id).orElse(null);
     }
 }

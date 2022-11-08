@@ -7,10 +7,10 @@
 </head>
 <body>
 <h2>Logg inn</h2>
-<p style="color:red;"></p>
-<form method="post">
+<p style="color:red;">${redirectMessage}</p>
+<form action="login" method="post">
     <fieldset>
-        <label for="mobile">Mobile:</label> <input type="text" id="mobile" name="mobile">
+        <label for="mobile">Mobile:</label> <input type="number" id="mobile" name="mobile">
         <label for="password">Password:</label> <input type="password" id="password" name="password">
         <br><br><button type="submit">Login</button>
     </fieldset>
