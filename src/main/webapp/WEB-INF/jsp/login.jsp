@@ -10,8 +10,8 @@
 <p style="color:red;">${redirectMessage}</p>
 <form action="login" method="post">
     <fieldset>
-        <label for="mobile">Phone Number:</label> <input type="number" id="mobile" name="mobile" placeholder="Phone Number">
-        <label for="password">Password:</label> <input type="password" id="password" name="password" placeholder="Password">
+        <label for="mobile">Phone Number:</label> <input type="number" id="mobile" name="mobile" placeholder="Phone Number" required>
+        <label for="password">Password:</label> <input type="password" id="password" name="password" placeholder="Password" required>
         <br><br><button type="submit">Login</button>
     </fieldset>
 </form>

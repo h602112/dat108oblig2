@@ -5,6 +5,8 @@ import dat108.hvl.no.fest.repository.ParticipantRepository;
 import dat108.hvl.no.fest.service.ParticipantService;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.Part;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -18,7 +20,9 @@ public class ParticipantServiceImpl implements ParticipantService {
 
     @Override
     public List<Participant> getAllParticipants() {
-        return participantRepository.findAll();
+        List<Participant> participants = participantRepository.findAll();
+        Collections.sort(participants);
+        return participants;
     }
 
     @Override
