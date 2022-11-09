@@ -36,7 +36,6 @@ public class RegistrationController {
     @PostMapping ("/registration")
     public String submitRegistration(@ModelAttribute("participant") Participant participant,
                                      RedirectAttributes ra, HttpServletRequest request) {
-
         participantService.saveParticipant(participant);
         ra.addFlashAttribute("participant", participant);
         LoginUtil.logInUser(request, participant);
