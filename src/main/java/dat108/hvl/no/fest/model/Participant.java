@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import dat108.hvl.no.fest.util.PasswordUtil;
+
+import javax.persistence.Transient;
 import javax.servlet.http.Part;
 
 @Entity
@@ -20,6 +22,7 @@ public class Participant implements Comparable<Participant>{
     private String lastname;
     @Column(length = 5)
     private String gender;
+    @Transient
     private String password;
 
     public Participant() {}
