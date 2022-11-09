@@ -23,4 +23,5 @@ public class LoginUtil {
         return session != null
                 && session.getAttribute("user") != null;
     }
+
 }

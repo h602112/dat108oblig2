@@ -3,6 +3,7 @@ package dat108.hvl.no.fest.controller;
 import dat108.hvl.no.fest.model.Participant;
 import dat108.hvl.no.fest.service.ParticipantService;
 import dat108.hvl.no.fest.util.LoginUtil;
+import dat108.hvl.no.fest.util.PasswordUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -85,13 +86,16 @@ public class RegistrationController {
                               HttpServletRequest request, RedirectAttributes ra) {
 
         Participant participant = participantService.getParticipantById(id);
+        String salt = participant.getSalt();
+        String hashedPassword = PasswordUtil.hashWithSalt(pw, salt);
 
         if (participant == null) {
             ra.addFlashAttribute("redirectMessage", INVALID_LOGIN_MSG);
             return "redirect:/login";
         }
 
-        if (!id.equals(participant.getMobile()) || !pw.equals(participant.getPassword())) {
+        if (!id.equals(participant.getMobile()) || !pw.equals(participant.getPassword()) ||
+                !(PasswordUtil.validateWithSalt(pw, salt, hashedPassword))) {
             ra.addFlashAttribute("redirectMessage", INVALID_LOGIN_MSG);
             return "redirect:/login";
         }

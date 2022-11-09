@@ -3,20 +3,24 @@ package dat108.hvl.no.fest.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import dat108.hvl.no.fest.util.PasswordUtil;
 import javax.servlet.http.Part;
 
 @Entity
 public class Participant implements Comparable<Participant>{
     @Id
     private Long mobile;
-    @Column(length = 50)
-    private String password;
+    @Column(length = 70)
+    private String hashedPassword;
+    @Column(length = 20)
+    private String salt;
     @Column(length = 20)
     private String firstname;
     @Column(length = 20)
     private String lastname;
     @Column(length = 5)
     private String gender;
+    private String password;
 
     public Participant() {}
 
@@ -26,6 +30,8 @@ public class Participant implements Comparable<Participant>{
         this.firstname = firstname;
         this.lastname = lastname;
         this.gender = gender;
+        this.salt = PasswordUtil.generateRandomSalt();
+        this.hashedPassword = PasswordUtil.hashWithSalt(password, this.salt);
     }
 
     @Override
@@ -71,5 +77,21 @@ public class Participant implements Comparable<Participant>{
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getHashedPassword() {
+        return hashedPassword;
+    }
+
+    public void setHashedPassword(String hashedPassword) {
+        this.hashedPassword = hashedPassword;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 }
