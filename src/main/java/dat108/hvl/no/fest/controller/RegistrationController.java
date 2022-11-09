@@ -36,6 +36,7 @@ public class RegistrationController {
     @PostMapping ("/registration")
     public String submitRegistration(@ModelAttribute("participant") Participant participant,
                                      RedirectAttributes ra, HttpServletRequest request) {
+        participant.generateSaltAndHashedPassword();
         participantService.saveParticipant(participant);
         ra.addFlashAttribute("participant", participant);
         LoginUtil.logInUser(request, participant);
@@ -85,8 +86,6 @@ public class RegistrationController {
                               HttpServletRequest request, RedirectAttributes ra) {
 
         Participant participant = participantService.getParticipantById(id);
-        String salt = participant.getSalt();
-        String hashedPassword = PasswordUtil.hashWithSalt(pw, salt);
 
         if (participant == null) {
             ra.addFlashAttribute("redirectMessage", INVALID_LOGIN_MSG);
@@ -94,7 +93,7 @@ public class RegistrationController {
         }
 
         if (!id.equals(participant.getMobile()) || !pw.equals(participant.getPassword()) ||
-                !(PasswordUtil.validateWithSalt(pw, salt, hashedPassword))) {
+                !PasswordUtil.validateWithSalt(pw, participant.getSalt(), participant.getHashedPassword())) {
             ra.addFlashAttribute("redirectMessage", INVALID_LOGIN_MSG);
             return "redirect:/login";
         }

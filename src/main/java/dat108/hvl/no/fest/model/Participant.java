@@ -12,9 +12,9 @@ import javax.servlet.http.Part;
 public class Participant implements Comparable<Participant>{
     @Id
     private Long mobile;
-    @Column(length = 70)
+    @Column(length = 255)
     private String hashedPassword;
-    @Column(length = 20)
+    @Column(length = 255)
     private String salt;
     @Column(length = 20)
     private String firstname;
@@ -33,13 +33,16 @@ public class Participant implements Comparable<Participant>{
         this.firstname = firstname;
         this.lastname = lastname;
         this.gender = gender;
-        this.salt = PasswordUtil.generateRandomSalt();
-        this.hashedPassword = PasswordUtil.hashWithSalt(password, this.salt);
     }
 
     @Override
     public int compareTo(Participant participant) {
         return this.firstname.compareTo(participant.getFirstname());
+    }
+
+    public void generateSaltAndHashedPassword() {
+        setSalt(PasswordUtil.generateRandomSalt());
+        setHashedPassword(PasswordUtil.hashWithSalt(this.password, this.salt));
     }
 
     public Long getMobile() {
