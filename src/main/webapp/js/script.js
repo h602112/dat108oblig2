@@ -26,7 +26,7 @@ function checkLastName() {
 // check validity of the users mobile number while typing
 function checkMobileNumber() {
     const value = mobileNumber.value;
-    if (!value || value.length !== 8 || isNaN(value)) {
+    if (!value || !(value.length === 8) || isNaN(value)) {
         mobileNumber.style.backgroundColor = 'red';
     } else {
         mobileNumber.style.backgroundColor = 'green';

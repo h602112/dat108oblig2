@@ -92,7 +92,7 @@ public class RegistrationController {
             return "redirect:/login";
         }
 
-        if (!id.equals(participant.getMobile()) || !pw.equals(participant.getPassword()) ||
+        if (!id.equals(participant.getMobile()) ||
                 !PasswordUtil.validateWithSalt(pw, participant.getSalt(), participant.getHashedPassword())) {
             ra.addFlashAttribute("redirectMessage", INVALID_LOGIN_MSG);
             return "redirect:/login";
