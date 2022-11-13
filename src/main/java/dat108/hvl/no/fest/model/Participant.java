@@ -20,7 +20,7 @@ public class Participant implements Comparable<Participant>{
     @Column(length = 255)
     private String salt;
     @Column(length = 20)
-    @Size(min = 2, max = 20)
+    @Size(min = 2, max = 10)
     private String firstname;
     @Column(length = 20)
     @Size(min = 2, max = 20)
@@ -32,6 +32,9 @@ public class Participant implements Comparable<Participant>{
     @Size(min = 7, message = "size must be minimum 7 characters")
     private String password;
 
+    public Participant(String firstName) {
+        this.firstname = firstName;
+    }
     public Participant() {}
 
     public Participant(Long mobile, String password, String firstname, String lastname, String gender) {
