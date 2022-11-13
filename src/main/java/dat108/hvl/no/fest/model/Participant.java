@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import dat108.hvl.no.fest.util.PasswordUtil;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Transient;
 import javax.servlet.http.Part;
@@ -12,6 +13,7 @@ import javax.validation.constraints.*;
 @Entity
 public class Participant implements Comparable<Participant>{
     @Id
+    @Digits(integer = 8, fraction = 0, message = "must be exactly 8 digits")
     private Long mobile;
     @Column(length = 255)
     private String hashedPassword;
