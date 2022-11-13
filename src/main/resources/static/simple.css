@@ -627,11 +627,6 @@ progress:indeterminate::-moz-progress-bar {
 
 /* Custom student styling */
 
-.required::after {
-    content: ' *';
-    color: red;
-    display: inline;
-}
 
 /* CHEATING?? */
 /* Chrome, Safari, Edge, Opera */

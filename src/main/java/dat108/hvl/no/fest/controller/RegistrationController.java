@@ -7,6 +7,7 @@ import dat108.hvl.no.fest.util.PasswordUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 @Controller
 public class RegistrationController {
@@ -29,13 +31,19 @@ public class RegistrationController {
     }
 
     @GetMapping("/registration")
-    public String registrationForm() {
-        return "registration";
+    public String registrationForm(Model model) {
+        Participant participant = new Participant();
+        model.addAttribute("participant", participant);
+        return "reg";
     }
 
     @PostMapping ("/registration")
-    public String submitRegistration(@ModelAttribute("participant") Participant participant,
-                                     RedirectAttributes ra, HttpServletRequest request) {
+    public String submitRegistration(@Valid @ModelAttribute("participant") Participant participant,
+                                     BindingResult bindingResult, RedirectAttributes ra, HttpServletRequest request) {
+
+        if (bindingResult.hasErrors()) {
+            return "reg";
+        }
         participant.generateSaltAndHashedPassword();
         participantService.saveParticipant(participant);
         ra.addFlashAttribute("participant", participant);

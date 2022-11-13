@@ -7,6 +7,7 @@ import dat108.hvl.no.fest.util.PasswordUtil;
 
 import javax.persistence.Transient;
 import javax.servlet.http.Part;
+import javax.validation.constraints.*;
 
 @Entity
 public class Participant implements Comparable<Participant>{
@@ -17,12 +18,16 @@ public class Participant implements Comparable<Participant>{
     @Column(length = 255)
     private String salt;
     @Column(length = 20)
+    @Size(min = 2, max = 20)
     private String firstname;
     @Column(length = 20)
+    @Size(min = 2, max = 20)
     private String lastname;
     @Column(length = 5)
+    @NotBlank
     private String gender;
     @Transient
+    @Size(min = 7, message = "size must be minimum 7 characters")
     private String password;
 
     public Participant() {}
