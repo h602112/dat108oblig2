@@ -21,22 +21,22 @@
 <form:form action="registration" method="post" modelAttribute="participant">
     <div>
         <form:label path="firstname">Firstname</form:label>
-        <form:input  path="firstname" placeholder="First Name" onkeypress="checkFirstName()"/>
+        <form:input  path="firstname" placeholder="First Name" onkeyup="checkFirstName()"/>
         <form:errors path="firstname" cssClass="error"/>
     </div>
     <div>
         <form:label path="lastname">Lastname</form:label>
-        <form:input path="lastname" placeholder="Last Name" onkeypress="checkLastName()"/>
+        <form:input path="lastname" placeholder="Last Name" onkeyup="checkLastName()"/>
         <form:errors path="lastname" cssClass="error"/>
     </div>
     <div>
         <form:label path="mobile">Phone Number</form:label>
-        <form:input path="mobile" placeholder="Phone Number" onkeypress="checkMobileNumber()"/>
+        <form:input path="mobile" placeholder="Phone Number" onkeyup="checkMobileNumber()"/>
         <form:errors path="mobile" cssClass="error"/>
     </div>
     <div>
         <form:label path="password">Password</form:label>
-        <form:password path="password" placeholder="Password" onkeypress="checkPassword()"/>
+        <form:password path="password" placeholder="Password" onkeyup="checkPassword()"/>
         <form:errors path="password" cssClass="error"/>
     </div>
     <div>
