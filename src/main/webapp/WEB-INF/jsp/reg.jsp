@@ -6,7 +6,6 @@
     <!-- <script src="js/myscript.js" defer></script>  -->
     <title>Registration</title>
     <script src="js/script.js" defer></script>
-
     <style>
         .error {
             color: red;
@@ -22,17 +21,17 @@
 <form:form action="registration" method="post" modelAttribute="participant">
     <div>
         <form:label path="firstname">Firstname</form:label>
-        <form:input  path="firstname" placeholder="First Name"/>
+        <form:input  path="firstname" placeholder="First Name" onkeypress="checkFirstName()"/>
         <form:errors path="firstname" cssClass="error"/>
     </div>
     <div>
         <form:label path="lastname">Lastname</form:label>
-        <form:input path="lastname" placeholder="Last Name"/>
+        <form:input path="lastname" placeholder="Last Name" onkeypress="checkLastName()"/>
         <form:errors path="lastname" cssClass="error"/>
     </div>
     <div>
         <form:label path="mobile">Phone Number</form:label>
-        <form:input path="mobile" placeholder="Phone Number"/>
+        <form:input path="mobile" placeholder="Phone Number" onkeypress="checkMobileNumber()"/>
         <form:errors path="mobile" cssClass="error"/>
     </div>
     <div>

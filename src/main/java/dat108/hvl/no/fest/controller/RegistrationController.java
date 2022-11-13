@@ -41,7 +41,7 @@ public class RegistrationController {
     @PostMapping ("/registration")
     public String submitRegistration(@Valid @ModelAttribute("participant") Participant participant,
                                      BindingResult bindingResult, RedirectAttributes ra, HttpServletRequest request) {
-        
+
         if (participant.getMobile() == null || participant.getMobile().toString().length() != 8) {
             bindingResult.rejectValue("mobile", null, "must be exactly 8 digits");
         } else if (participant.getMobile().toString().length() == 8) {
