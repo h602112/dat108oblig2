@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,10 +41,19 @@ public class RegistrationController {
     @PostMapping ("/registration")
     public String submitRegistration(@Valid @ModelAttribute("participant") Participant participant,
                                      BindingResult bindingResult, RedirectAttributes ra, HttpServletRequest request) {
+        
+        if (participant.getMobile() == null || participant.getMobile().toString().length() != 8) {
+            bindingResult.rejectValue("mobile", null, "must be exactly 8 digits");
+        } else if (participant.getMobile().toString().length() == 8) {
+            if (participantService.getParticipantById(participant.getMobile()) != null) {
+                bindingResult.rejectValue("mobile", null, "participant already registered");
+            }
+        }
 
         if (bindingResult.hasErrors()) {
             return "reg";
         }
+
         participant.generateSaltAndHashedPassword();
         participantService.saveParticipant(participant);
         ra.addFlashAttribute("participant", participant);
